@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LOGIN=$1
 PASSWORD=$2
@@ -17,30 +17,36 @@ fi
 #--------------------------
 # Set-up Audible-Activator
 #--------------------------
-if [ ! -d "audible-activator-master" ]; then
+if [ ! -d "audible-activator-feature_login_as_arg" ]; then
 	echo "Downloading audible-activator..."
-	wget https://github.com/inAudible-NG/audible-activator/archive/master.zip -O audible-activator.zip
+	wget https://github.com/paladini/audible-activator/archive/feature_login_as_arg.zip -O audible-activator.zip
 	unzip audible-activator.zip
 	rm audible-activator.zip
 
 	echo "Downloading Chrome-Driver-Latest..."
 	wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O chromedriver-latest-release.txt
 	LATEST_CHROMEDRIVER_VERSION=$(cat chromedriver-latest-release.txt)
-	wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip -O chrome-driver-latest.zip
+
+	# Detect if system is 64 bits or 32 bits
+	if [ $(uname -m) == 'x86_64' ]; then
+	  	wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip -O chrome-driver-latest.zip
+	else
+	  	wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux32.zip -O chrome-driver-latest.zip
+	fi
 	unzip chrome-driver-latest.zip
 	rm chrome-driver-latest.zip
-fi
 
-# Downloading prerequisites (Requests, Selenium)
-sudo pip install requests
-sudo pip install selenium
+	# Downloading prerequisites (Requests, Selenium)
+	sudo pip install requests
+	sudo pip install selenium
+fi
 
 #--------------------------
 # Getting activation code
 #--------------------------
-OUTPUT=$(python audible-activator-master/audible-activator.py | tail -1)
+ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py --user $LOGIN --password $PASSWORD | tail -1)
 
 #--------------------------
 # Converting files
 #--------------------------
-bash AAXtoMP3-master/AAXtoMP3.sh $OUTPUT $1
+bash AAXtoMP3-master/AAXtoMP3.sh $ACTIVATION $FILES

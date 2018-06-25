@@ -4,7 +4,7 @@ LOGIN=$1
 PASSWORD=$2
 FILES=$3
 
-# Check if the number of arguments is equal or greater than 3. 
+# Check if the number of arguments is equal or greater than 3.
 if [ "$#" -lt 3 ]; then
     echo "Illegal number of parameters, expecting at least 3. Usage:"
     echo -e "  $ bash aax2mp3_easy.sh <audible_login> <audible_password> <files_to_be_converted.aax> \n"
@@ -31,17 +31,24 @@ if [ ! -d "audible-activator-feature_login_as_arg" ]; then
 	rm audible-activator.zip
 
 	echo "Downloading Chrome-Driver-Latest..."
-	wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O chromedriver-latest-release.txt
-	LATEST_CHROMEDRIVER_VERSION=$(cat chromedriver-latest-release.txt)
-
-	# Detect if system is 64 bits or 32 bits
-	if [ $(uname -m) == 'x86_64' ]; then
-	  	wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip -O chrome-driver-latest.zip
+	if [ $(uname) == "Darwin" ]; then
+		# Install Chrome-Driver for OSX
+		brew install chromedriver
+		ln -fs `which chromedriver` chromedriver
 	else
-	  	wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux32.zip -O chrome-driver-latest.zip
+		# Install Chrome-Driver for Linux
+		wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O chromedriver-latest-release.txt
+		LATEST_CHROMEDRIVER_VERSION=$(cat chromedriver-latest-release.txt)
+
+		# Detect if system is 64 bits or 32 bits
+		if [ $(uname -m) == 'x86_64' ]; then
+			wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip -O chrome-driver-latest.zip
+		else
+			wget https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux32.zip -O chrome-driver-latest.zip
+		fi
+		unzip chrome-driver-latest.zip
+		rm chrome-driver-latest.zip
 	fi
-	unzip chrome-driver-latest.zip
-	rm chrome-driver-latest.zip
 
 	# Downloading prerequisites (Requests, Selenium)
 	sudo pip install requests

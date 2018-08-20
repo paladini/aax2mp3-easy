@@ -63,4 +63,4 @@ ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py 
 #--------------------------
 # Converting files
 #--------------------------
-bash AAXtoMP3-master/AAXtoMP3 $ACTIVATION $FILES
+bash AAXtoMP3-master/AAXtoMP3 -A $ACTIVATION $FILES

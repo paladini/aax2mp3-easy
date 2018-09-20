@@ -16,9 +16,15 @@ fi
 #------------------
 if [ ! -d "AAXtoMP3-master" ]; then
 	echo "Downloading AAXtoMP3..."
+	brew install wget
 	wget https://github.com/KrumpetPirate/AAXtoMP3/archive/master.zip -O aaxtomp3.zip
 	unzip aaxtomp3.zip
 	rm aaxtomp3.zip
+
+	brew install ffmpeg
+	brew install gnu-sed
+	brew install grep
+	brew install mp4v2
 fi
 
 #--------------------------
@@ -26,6 +32,7 @@ fi
 #--------------------------
 if [ ! -d "audible-activator-feature_login_as_arg" ]; then
 	echo "Downloading audible-activator..."
+	brew install wget
 	wget https://github.com/paladini/audible-activator/archive/feature_login_as_arg.zip -O audible-activator.zip
 	unzip audible-activator.zip
 	rm audible-activator.zip
@@ -33,9 +40,10 @@ if [ ! -d "audible-activator-feature_login_as_arg" ]; then
 	echo "Downloading Chrome-Driver-Latest..."
 	if [ $(uname) == "Darwin" ]; then
 		# Install Chrome-Driver for OSX
-		brew install chromedriver
+		brew cask install chromedriver
 		ln -fs `which chromedriver` chromedriver
 	else
+		brew install wget
 		# Install Chrome-Driver for Linux
 		wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O chromedriver-latest-release.txt
 		LATEST_CHROMEDRIVER_VERSION=$(cat chromedriver-latest-release.txt)
@@ -51,6 +59,11 @@ if [ ! -d "audible-activator-feature_login_as_arg" ]; then
 	fi
 
 	# Downloading prerequisites (Requests, Selenium)
+	if [ ! $(command -v pip) ]; then
+		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+		python get-pip.py
+	fi
+
 	sudo pip install requests
 	sudo pip install selenium
 fi
@@ -63,4 +76,4 @@ ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py 
 #--------------------------
 # Converting files
 #--------------------------
-bash AAXtoMP3-master/AAXtoMP3 $ACTIVATION $FILES
+bash AAXtoMP3-master/AAXtoMP3 --authcode $ACTIVATION $FILES

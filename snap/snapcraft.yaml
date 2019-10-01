@@ -1,0 +1,25 @@
+name: aax2mp3-easy
+version: '1.0'
+summary: Easily convert .aax files to .mp3
+description: |
+  In short, aax2mp3_easy automates the two-step process that AAXtoMP3 requires to convert files, this way you just need to run a single script that you make everything for you (including install all dependencies).
+grade: devel
+confinement: devmode
+
+apps:
+  aax2mp3-easy:
+    command: bash $SNAP/aax2mp3-easy.sh
+    plugs:
+      - network
+      - home
+      
+parts:
+  aax2mp3-easy:
+    source: https://github.com/kz6fittycent/aax2mp3-easy
+    source-type: git
+    plugin: nil
+    
+publish:
+  plugin: copy
+  files:
+    ./aax2mp3-easy.sh: aax2mp3-easy

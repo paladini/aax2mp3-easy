@@ -1,5 +1,5 @@
 name: aax2mp3-easy
-version: '1.0'
+version: git
 summary: Easily convert .aax files to .mp3
 description:  |
   Easily convert .aax files to .mp3

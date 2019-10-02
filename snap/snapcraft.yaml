@@ -8,7 +8,7 @@ confinement: devmode
 
 apps:
   aax2mp3-easy:
-    command: bash $SNAP/aax2mp3-easy.sh
+    command: bash $SNAP/aax2mp3_easy.sh
     plugs:
       - network
       - home
@@ -22,4 +22,4 @@ parts:
   publish:
     plugin: copy
     files:
-      ./aax2mp3-easy.sh: aax2mp3-easy.sh
+      ./aax2mp3_easy.sh: aax2mp3_easy.sh

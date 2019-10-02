@@ -18,3 +18,8 @@ parts:
     source: https://github.com/kz6fittycent/aax2mp3-easy
     source-type: git
     plugin: nil
+    
+  publish:
+    plugin: copy
+    files:
+      ./aax2mp3-easy.sh: aax2mp3-easy.sh

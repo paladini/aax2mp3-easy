@@ -1,6 +1,11 @@
 
 [![Snap Status](https://build.snapcraft.io/badge/kz6fittycent/aax2mp3-easy.svg)](https://build.snapcraft.io/user/kz6fittycent/aax2mp3-easy)
 
+# To install the snap:
+```
+sudo snap install aax2mp3-easy --devmode --edge
+```
+
 # aax2mp3_easy
 <br/>
 <p align="center">

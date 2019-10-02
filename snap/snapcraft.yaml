@@ -1,8 +1,8 @@
 name: aax2mp3-easy
 version: '1.0'
 summary: Easily convert .aax files to .mp3
-description: |
-  In short, aax2mp3_easy automates the two-step process that AAXtoMP3 requires to convert files
+#description: |
+#  In short, aax2mp3_easy automates the two-step process that AAXtoMP3 requires to convert files
 grade: devel
 confinement: devmode
 
@@ -18,8 +18,3 @@ parts:
     source: https://github.com/kz6fittycent/aax2mp3-easy
     source-type: git
     plugin: nil
-    
-publish:
-  plugin: copy
-  files:
-    ./aax2mp3-easy.sh: aax2mp3-easy

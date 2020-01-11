@@ -30,10 +30,10 @@ fi
 #--------------------------
 # Set-up Audible-Activator
 #--------------------------
-if [ ! -d "audible-activator-feature_login_as_arg" ]; then
+if [ ! -d "audible-activator-master" ]; then
 	echo "Downloading audible-activator..."
 	brew install wget
-	wget https://github.com/paladini/audible-activator/archive/feature_login_as_arg.zip -O audible-activator.zip
+	wget https://github.com/paladini/audible-activator/archive/master.zip -O audible-activator.zip
 	unzip audible-activator.zip
 	rm audible-activator.zip
 
@@ -71,7 +71,7 @@ fi
 #--------------------------
 # Getting activation code
 #--------------------------
-ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py -d --user $LOGIN --password $PASSWORD | tail -1)
+ACTIVATION=$(python audible-activator-master/audible-activator.py -d --username=$LOGIN --password=$PASSWORD | tail -1)
 
 #--------------------------
 # Converting files

@@ -71,7 +71,7 @@ fi
 #--------------------------
 # Getting activation code
 #--------------------------
-ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py --user $LOGIN --password $PASSWORD | tail -1)
+ACTIVATION=$(python audible-activator-feature_login_as_arg/audible-activator.py -d --user $LOGIN --password $PASSWORD | tail -1)
 
 #--------------------------
 # Converting files

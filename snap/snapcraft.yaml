@@ -36,7 +36,7 @@ apps:
       
 parts:
   aax2mp3-easy:
-    source: https://github.com/kz6fittycent/aax2mp3-easy
+    source: https://github.com/paladini/aax2mp3-easy
     source-type: git
     plugin: nil
     

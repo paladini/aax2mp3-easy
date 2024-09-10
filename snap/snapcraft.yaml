@@ -3,9 +3,12 @@ version: git
 summary: Easily convert .aax files to .mp3
 description:  |
   Easily convert .aax files to .mp3
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 base: core24
+source-code: https://github.com/paladini/aax2mp3-easy
+issues: https://github.com/kz6fittycent/aax2mp3-easy/issues
+contact: https://github.com/kz6fittycent/aax2mp3-easy
 
 platforms:
   amd64:

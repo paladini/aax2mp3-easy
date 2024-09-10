@@ -39,5 +39,6 @@ parts:
     
   publish:
     plugin: dump
+    source: .
     organize:
       "*": /bin/

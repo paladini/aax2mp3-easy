@@ -5,6 +5,8 @@ description:  |
   Easily convert .aax files to .mp3
 grade: devel
 confinement: devmode
+base: core24
+
 platforms:
   amd64:
     build-on: [amd64]

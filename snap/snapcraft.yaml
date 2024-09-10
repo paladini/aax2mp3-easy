@@ -9,6 +9,7 @@ base: core24
 source-code: https://github.com/paladini/aax2mp3-easy
 issues: https://github.com/kz6fittycent/aax2mp3-easy/issues
 contact: https://github.com/kz6fittycent/aax2mp3-easy
+license: MIT
 
 platforms:
   amd64:
